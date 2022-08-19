@@ -1,0 +1,477 @@
+version: 2
+
+models:
+  - name: export_anomalie
+    description: ""
+    columns:
+      - name: identifiant
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: libelle
+        description: ""
+        tests:
+          - not_null
+
+      - name: description
+        description: ""
+
+      - name: type_d_equipement
+        description: ""
+        tests:
+          - not_null
+          - relationships:
+              to: ref('export_ees')
+              field: id_sagai 
+
+      - name: actif
+        description: ""
+
+      - name: niveau_d_urgence
+        description: ""
+        tests:
+          - not_null        
+
+      - name: etat_de_l_equipement
+        description: ""
+        tests:
+          - not_null        
+
+      - name: situation_inacceptable
+        description: ""
+
+      - name: critere_de_nettete
+        description: ""
+
+      - name: piece_jointe_obligatoire
+        description: ""
+
+      - name: verifications_exploitant
+        description: ""
+
+      - name: sensible
+        description: ""
+  - name: export_ees
+    description: ""
+    columns:
+      - name: id_sagai
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: libelle
+        description: ""
+        tests:
+          - not_null
+
+      - name: sous_type
+        description: ""
+
+      - name: url_unc
+        description: ""
+
+      - name: inventaire_autorise
+        description: ""
+
+      - name: actif
+        description: ""
+
+      - name: commentaire
+        description: ""
+
+      - name: reseaux_fonctions
+        description: ""
+        tests:
+          - not_null
+          - agg_relationships:
+              to: ref('export_role_fonction')
+              field: nom
+
+      - name: station
+        description: ""
+
+      - name: elo_id
+        description: ""
+        tests:
+          - agg_relationships:
+              to: ref('export_lieux')
+              field: eloid        
+
+  - name: export_groupe_de_lieux
+    description: ""
+    columns:
+      - name: identifiant
+        description: ""
+        tests:
+          - unique
+          - not_null        
+
+      - name: type_espace
+        description: ""
+        tests:
+          - not_null         
+
+      - name: parent
+        description: ""
+
+      - name: elo_id
+        description: ""
+        tests:
+          - not_null
+          - agg_relationships:
+              to: ref('export_lieux')
+              field: eloid            
+
+      - name: actif
+        description: ""
+
+      - name: description
+        description: ""  
+
+  - name: export_lieux
+    description: ""
+    columns:
+      - name: code_ug
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: eloid
+        description: ""
+        tests:
+          - unique
+          - not_null        
+
+      - name: code_ug_pere
+        description: ""
+
+      - name: reseau_code
+        description: ""
+
+      - name: reseau_libelle
+        description: ""
+
+      - name: code_famille_de_lieux
+        description: ""
+
+      - name: libelle_famille_de_lieux
+        description: ""
+
+      - name: type_libelle
+        description: ""
+
+      - name: commentaire
+        description: ""
+
+      - name: code_postal
+        description: ""
+
+      - name: type_de_voie
+        description: ""
+
+      - name: nemero_de_la_voie
+        description: ""
+
+      - name: nom_de_la_voie
+        description: ""
+
+      - name: boite_postale
+        description: ""
+
+      - name: cedex
+        description: ""
+
+      - name: commune
+        description: ""
+
+      - name: libelle_court_du_lieu
+        description: ""
+
+      - name: libelle_long_du_lieu
+        description: ""
+
+      - name: type_de_lieu
+        description: ""
+
+      - name: destina1_code
+        description: ""
+
+      - name: destina1_libelle
+        description: ""
+
+      - name: destina2_code
+        description: ""
+
+      - name: destina2_lib
+        description: ""
+
+      - name: famelo_code
+        description: ""
+
+      - name: famelo_lib
+        description: ""  
+  - name: export_organisation_fonction
+    description: ""
+    columns:
+      - name: identifiant
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: fonction_merlin
+        description: ""
+        tests:
+          - not_null
+          - agg_relationships:
+              to: ref('export_role_fonction')
+              field: nom    
+  
+  - name: export_organisation_groupe_de_lieux
+    description: ""
+    columns:
+      - name: identifiant
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: nom
+        description: ""
+        tests:
+          - not_null
+          - agg_relationships:
+              to: ref('export_groupe_de_lieux')
+              field: identifiant    
+  - name: export_organisation
+    description: ""
+    columns:
+      - name: identifiant
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: libelle
+        description: ""
+        tests:
+          - not_null            
+
+      - name: organisation_mere
+        description: ""
+        tests:
+          - relationships:
+              to: ref('export_organisation')
+              field: identifiant
+
+      - name: societe_mere
+        description: ""
+        tests:
+          - not_null        
+
+      - name: type_d_organisation
+        description: ""
+
+      - name: tel_intervenant
+        description: ""
+
+      - name: actif
+        description: ""
+
+      - name: mode_de_propagation_par_defaut
+        description: ""
+
+      - name: mode_de_propagation_force
+        description: ""
+
+      - name: date_de_debut
+        description: ""
+
+      - name: date_de_fin
+        description: ""
+
+      - name: adresse_postale
+        description: ""
+
+      - name: mode_de_propagation_nominal
+        description: ""
+
+      - name: mode_de_propagation_nominal_cible
+        description: ""
+
+      - name: mode_de_propagation_degrade
+        description: ""
+
+      - name: mode_de_propagation_degrade_cible
+        description: ""
+
+      - name: commmentaire
+        description: ""
+
+  - name: export_regle_de_routage
+    description: ""
+    columns:
+      - name: identifiant
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: libelle
+        description: ""
+
+      - name: description
+        description: ""
+
+      - name: actif
+        description: ""
+
+      - name: date_debut
+        description: ""
+
+      - name: date_fin
+        description: ""
+
+      - name: plage_horaire
+        description: ""
+
+      - name: heure_de_debut
+        description: ""
+
+      - name: heure_de_fin
+        description: ""
+
+      - name: poids
+        description: ""
+
+      - name: lieux
+        description: ""
+        tests:
+          - not_null
+          - agg_relationships:
+              to: ref('export_lieux')
+              field: eloid         
+
+      - name: ees
+        description: ""
+        tests:
+          - not_null
+          - agg_relationships:
+              to: ref('export_ees')
+              field: id_sagai          
+
+      - name: equipement
+        description: ""            
+
+      - name: anomalie
+        description: ""
+        tests:
+          - agg_relationships:
+              to: ref('export_anomalie')
+              field: identifiant           
+
+      - name: intervenant_principal
+        description: ""
+        tests:
+          - not_null
+          - relationships:
+              to: ref('export_organisation')
+              field: identifiant   
+
+      - name: intervenant_pour_action
+        description: ""
+        tests:
+          - agg_relationships:
+              to: ref('export_organisation')
+              field: identifiant   
+
+      - name: intervenant_en_copie
+        description: ""
+        tests:
+          - agg_relationships:
+              to: ref('export_organisation')
+              field: identifiant        
+  - name: export_role_fonction
+    description: ""
+    columns:
+      - name: nom
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: description
+        description: ""
+        tests:
+          - not_null        
+
+  - name: export_equipement
+    description: ""
+    columns:
+      - name: identifiant
+        description: ""
+        tests:
+          - unique
+          - not_null
+
+      - name: nom
+        description: ""
+        tests:
+          - not_null
+
+      - name: actif
+        description: ""
+
+      - name: equipement_asservi
+        description: ""
+
+      - name: code_gmao
+        description: ""
+
+      - name: responsable
+        description: ""
+
+      - name: lieu
+        description: ""
+        tests:
+          - not_null
+          - relationships:
+              to: ref('export_lieux')
+              field: eloid  
+
+      - name: ees
+        description: ""
+        tests:
+          - not_null        
+          - relationships:
+              to: ref('export_ees')
+              field: id_sagai  
+
+      - name: organisation
+        description: ""
+        tests:
+          - relationships:
+              to: ref('export_organisation')
+              field: identifiant         
+
+      - name: xpeage
+        description: ""
+
+      - name: source
+        description: ""
+
+      - name: description
+        description: ""
+
+      - name: statut
+        description: ""
+
+      - name: regle
+        description: ""
+
+      - name: code_mire
+        description: ""

@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_anomalie
+    description: ""
+    columns:
+      - name: anomalie_id
+        description: "Identifiant d'anomalie"
+
+      - name: ees_id
+        description: ""
+
+      - name: anomalie_libl
+        description: ""
+
+      - name: anomalie_no_rang
+        description: ""
+
+      - name: anomalie_niv_urg
+        description: ""
+
+      - name: anomalie_inacceptable
+        description: "Permet d'identifier les anomalies inaccaptable"
+
+      - name: anomalie_niv_urg_mes
+        description: ""
+
+      - name: anomalie_nettete
+        description: ""
+
+      - name: anomalie_es_hs
+        description: ""
+
+      - name: anomalie_delai
+        description: ""
+
+      - name: anomalie_forfait
+        description: ""
+
+      - name: anomalie_date_cre
+        description: ""
+
+      - name: anomalie_utilisateur_cre
+        description: ""
+
+      - name: anomalie_date_modif
+        description: ""
+
+      - name: anomalie_utilisateur_modif
+        description: ""

@@ -1,0 +1,45 @@
+version: 2
+
+sources:
+  - name: sagai_raw
+    description: "Import des tables sagai nécessaires à la reprise de données"
+    database: sagai
+    schema: raw
+    tables:
+      - name: adresse_refpat
+      - name: anomalie      
+      - name: bloc
+      - name: blocage_gmao
+      - name: depeche
+      - name: detail_grlieu
+      - name: ees
+      - name: ees_generique
+      - name: emission
+      - name: equipement_agora
+      - name: evenement
+      - name: famelo
+      - name: fonction
+      - name: fonction_ees
+      - name: grlieu
+      - name: inter_station
+      - name: inventaire_auxiliaire
+      - name: mapping_org_dept
+      - name: mots_clefs
+      - name: organisation
+      - name: organisation_reseau
+      - name: organisation_zone
+      - name: profil
+      - name: propagations
+      - name: regle
+      - name: regle_action
+      - name: regle_ano
+      - name: regle_copie
+      - name: regle_ees
+      - name: regle_lieu
+      - name: reorg_reseau_fonction_ess_merlin
+      - name: reseau
+      - name: reseau_fonction
+      - name: rpt
+      - name: telephone
+      - name: utilisateur
+      - name: zonegeo

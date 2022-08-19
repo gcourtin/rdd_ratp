@@ -1,0 +1,10 @@
+version: 2
+
+sources: 
+  - name: externe_data
+    description: "Import des tables des gmao asservis pour analyse des données"
+    database: sagai
+    schema: ext
+    tables:
+      - name: equipement_agora
+      - name: lieu_si_immo

@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: mapping_data
+    description: "Import des tables de mapping nécessaires à la reprise de données"
+    database: sagai
+    schema: map
+    tables:
+      - name: mapping_org_dept
+      - name: mapping_reseau_fonction_ees
+      - name: mapping_fonction_merlin
