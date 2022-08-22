@@ -176,7 +176,7 @@ final as (
                             inner join v_acc_lieux al on gr.elo_id=al.lieu_id
                             where dg.collection_id = 3
                             ) */
-             and type_elo not like  'TERRAIN%'
+             and type_elo not like  'TERRAIN_S' and type_elo not like  'TERRAIN_L'
 )
 
 select * from final

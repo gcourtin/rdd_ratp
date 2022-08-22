@@ -64,20 +64,20 @@ v_export_regle as (
 
 
 final as (
-    select distinct r.regle_id,
-        case when ra.regle_id is null then 0 else 1 end rano,
-        case when re.regle_id is null then 0 else 1 end rees,
-        case when rl.regle_id is null then 0 else 1 end rlei,
-        case when rac.regle_id is null then 0 else 1 end ract,
-        case when rc.regle_id is null then 0 else 1 end rcopie,
-        case when e.ees_id is null then 1 else 0 end ees_inex,
-        case when e2.ees_id is null and e.ees_id is not null then 1 else 0 end ees_npu, 
-        case when rp.elo_id is null then 1 else 0 end lieu_inex,
-        case when nl.elo_id is null and rp.elo_id is not null then 1 else 0 end lieu_bus,
-        case when a.anomalie_id is null then 1 else 0 end ano_inex,
-        case when o.organisation_id is null then 1 else 0 end org_action_inex,
-        case when o1.organisation_id is null then 1 else 0 end org_copie_inex,
-        case when er.identifiant is null then 1 else 0 end regle_non_reprise,
+    select r.regle_id,
+        max(case when ra.regle_id is null then 0 else 1 end) rano,
+        max(case when re.regle_id is null then 0 else 1 end) rees,
+        max(case when rl.regle_id is null then 0 else 1 end) rlei,
+        max(case when rac.regle_id is null then 0 else 1 end) ract,
+        max(case when rc.regle_id is null then 0 else 1 end) rcopie,
+        max(case when e.ees_id is null then 1 else 0 end) ees_inex,
+        max(case when e2.ees_id is null and e.ees_id is not null then 1 else 0 end) ees_npu, 
+        max(case when rp.elo_id is null then 1 else 0 end) lieu_inex,
+        max(case when nl.elo_id is null and rp.elo_id is not null then 1 else 0 end) lieu_bus,
+        max(case when a.anomalie_id is null then 1 else 0 end) ano_inex,
+        max(case when o.organisation_id is null then 1 else 0 end) org_action_inex,
+        max(case when o1.organisation_id is null then 1 else 0 end) org_copie_inex,
+        max(case when er.identifiant is null then 1 else 0 end) regle_non_reprise,
         rano+rees+rlei as rall
     from v_regle r
         left join v_regle_ano ra on r.regle_id =ra.regle_id
@@ -93,6 +93,7 @@ final as (
         left join v_organisation o on rac.organisation_id = o.organisation_id
         left join v_organisation o1 on rc.organisation_id = o1.organisation_id
         left join v_export_regle er on er.identifiant=r.regle_id
+    group by r.regle_id
 )
 
 select * from final
