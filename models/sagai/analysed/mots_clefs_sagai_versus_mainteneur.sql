@@ -18,12 +18,8 @@ v_regle_copie as (
     select * from {{ ref('stg_regle_copie') }} 
 ),
 
-v_regle as (
-    select * from {{ ref('stg_regle') }} 
-),
-
-v_regle_action as (
-    select * from {{ ref('stg_regle_action') }} 
+v_regle_ano as (
+    select * from {{ ref('stg_regle_ano') }} 
 ),
 
 v_map_org_dept as (

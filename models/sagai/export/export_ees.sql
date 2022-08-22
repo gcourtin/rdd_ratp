@@ -25,6 +25,10 @@ v_int_ees_xpeage as (
     select * from {{ ref('int_ees_xpeage') }}
 ),
 
+v_net_map_fonction_merlin as (
+    select * from {{ ref('net_map_fonction_merlin') }}
+),
+
 final as (
     Select 
         id_sagai,
@@ -53,7 +57,7 @@ final as (
             null as inventaire_autorise,
             true as actif,
             null as commentaire,
-            f.fonction_libc,
+            trim(coalesce(mf.fonction_libc_merlin,f.fonction_libc)) fonction_libc,
             null as station,
             g.elo_id  as elo_id,
             x.x_peage
@@ -63,8 +67,10 @@ final as (
          left join v_grlieu_merlin g on eg.grlieu_id = g.grlieu_id
          left join v_net_mots_clefs m on m.ees_id =e.ees_id
          left join v_int_ees_xpeage x on e.ees_id=x.ees_id
+         left join v_net_map_fonction_merlin mf on trim(f.fonction_libc) = trim(mf.fonction_libc_sagai)  
          )
     group by id_sagai,libelle,sous_type,URL_UNC,inventaire_autorise,actif,commentaire,station,x_peage
+    having reseaux_fonctions is not null and reseaux_fonctions <> ''
 )
 
 select * from final

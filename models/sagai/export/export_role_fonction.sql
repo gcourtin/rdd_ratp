@@ -30,8 +30,7 @@ final as (
         inner join v_net_reseau r on rf.reseau_id =r.reseau_id 
         left join v_net_map_fonction_merlin m on trim(f.fonction_libc) = trim(m.fonction_libc_sagai) 
         where r.reseau_libc = 'Merlin'
-        ) 
-    where Nom not like 'BUS%'
+        )
 )
 
 select * from final

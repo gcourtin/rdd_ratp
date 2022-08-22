@@ -43,3 +43,18 @@ sources:
       - name: telephone
       - name: utilisateur
       - name: zonegeo
+  - name: rdd_export
+    description: "schema des données à exporter dans Merlin"
+    database: rdd
+    schema: dev_07_export
+    tables:
+      - name: export_anomalie
+      - name: export_ees
+      - name: export_equipement
+      - name: export_groupe_de_lieux
+      - name: export_lieux
+      - name: export_organisation
+      - name: export_organisation_fonction
+      - name: export_organisation_groupe_de_lieux
+      - name: export_regle_de_routage
+      - name: export_role_fonction

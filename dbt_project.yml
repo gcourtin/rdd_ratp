@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'rdd_merlin'
+name: 'rdd'
 version: '1.0.0'
 config-version: 2
 
@@ -31,27 +31,27 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  rdd_merlin:
+  rdd:
     sagai:
       # Applies to all files under models/example/
       staging:
         +materialized: view
-        +schema: rdd_stagging
+        +schema: 01_stagging
       cleaned:
         +materialized: table
-        +schema: rdd_cleaned      
+        +schema: 05_cleaned      
       intermediate:
         +materialized: table
-        +schema: rdd_intermediate      
+        +schema: 06_intermediate      
       export:
         +materialized: table
-        +schema: rdd_export
+        +schema: 07_export
       analysed:
-        +materialized: view
-        +schema: rdd_analysed                   
+        +materialized: table
+        +schema: 08_analysed                   
     mapping:
       +materialized: view
-      +schema: rdd_mapping
+      +schema: 02_mapping
     externe:
       +materialized: view
-      +schema: rdd_externe
+      +schema: 03_externe

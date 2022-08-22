@@ -14,6 +14,10 @@ v_map_org_dept as (
     select * from {{ ref('net_map_org_dept') }}
 ),
 
+v_net_fonction as (
+    select * from {{ ref('net_fonction') }}
+),
+
 final as (
     Select 
         m.organisation_id,m.departement,
@@ -23,7 +27,8 @@ final as (
         inner join v_organisation o on o.organisation_id =m.organisation_id
         left join v_organisation_reseau r on m.organisation_id =r.or_organisation_id 
         left join v_reseau_fonction f on r.or_reseau_id = f.reseau_id
-        where (o.fonction_id is not null or f.fonction_id is not null)
+        left join v_net_fonction nf on coalesce (o.fonction_id,f.fonction_id)=nf.fonction_id
+        where (o.fonction_id is not null or f.fonction_id is not null) and nf.fonction_id is not null
 )
 
 select * from final
