@@ -6,8 +6,9 @@
         target_schema='dev_99_snapshots',
         unique_key='identifiant',
 
-        strategy='ckeck',
+        strategy='check',
         check_cols='all',
+        invalidate_hard_deletes=True,
       )
   }}
 
@@ -22,7 +23,7 @@
     situation_inacceptable,
     critere_de_nettete,
     piece_jointe_obligatoire,
-    verification_exploitant,
+    verifications_exploitant,
     sensible
   from {{ source('rdd_export', 'export_anomalie') }}
 
