@@ -30,6 +30,10 @@ v_export_equipement as (
     select * from {{ ref('export_equipement') }} 
 ),
 
+v_int_ees_xpeage as (
+    select distinct ees_id from  {{ ref('int_ees_xpeage') }}
+),
+
 final as (
         select m.mot_clef,
             case when m.elo_id is null then 1 else 0 end elo_id_null,
@@ -38,19 +42,21 @@ final as (
             case when m.code_gmao is not null then 1 else 0 end code_gmao_not_null,
             case when m.elo_id not like '7%'
                     and m.elo_id not like '199%'
-                then 1 else 0 end lieu_bus,
+                then 0 else 1 end lieu_bus,
             case when upper(e.ees_libl) like '%NPU%' 
                     or e.ees_libl like '*%' 
                     or upper(e.ees_libl) like '%NE PLUS UTIL%' then 1 else 0 end ees_npu,
-            case when e.ees_id is null and m.ees_id is not null then 1 else 0 end ees_abs,
+            case when x.ees_id is not null  then 1 else 0 end ees_xpeage,
             case when o.organisation_id is null and m.organisation_id is not null then 1 else 0 end org_abs,
             case when l.elo_id is null and m.elo_id is not null then 1 else 0 end rpt_abs,
+            case when x.ees_id is null and m.ees_id is not null then 1 else 0 end ees_abs,
             case when ee.identifiant is null then 1 else 0 end mc_non_repris
         from v_mots_clefs m
         left join v_rpt l on m.elo_id = l.elo_id 
         left join v_ees e on m.ees_id = e.ees_id 
         left join v_organisation o on m.organisation_id = o.organisation_id
         left join v_export_equipement ee on ee.identifiant=m.mot_clef
+        left join v_int_ees_xpeage x on e.ees_id=x.ees_id
 )
 
 select * from final

@@ -3,7 +3,7 @@ with v_net_mots_clefs as (
 ),
 
 v_ees_xpeage as (
-    select * from {{ ref('int_ees_xpeage') }} 
+    select distinct ees_id from {{ ref('int_ees_xpeage') }} 
 ),
 
 v_ees as (
@@ -31,11 +31,8 @@ final as (
     inner join v_ees e on a.ees_id=e.ees_id
     left join v_ees_xpeage b on a.ees_id=b.ees_id    
     where (upper(a.mot_clef) not like '%ARES%' and  upper(a.mot_clef)  not like '%SAGAI%')
-    and (upper(a.mots_clefs_gmao) not like '%GDI%'
-        and upper(a.mots_clefs_gmao) not like 'GMAO'
-        and upper(a.mots_clefs_gmao) not like '%M2E%' 
-        or a.mots_clefs_gmao is null
-        ) 
+    and (upper(a.mots_clefs_gmao) not like '%GDI%' and upper(a.mots_clefs_gmao) not like 'GMAO' and upper(a.mots_clefs_gmao) not like '%M2E%'
+        or a.mots_clefs_gmao is null) 
     and a.ees_id is not null
     and a.elo_id is not null
     and b.ees_id is null   

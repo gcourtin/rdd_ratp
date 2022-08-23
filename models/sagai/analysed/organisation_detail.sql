@@ -104,7 +104,7 @@ final as (
         end as nb_inutilise
     from (
         select distinct
-            o.organisation_id org_id,
+            o.organisation_id organisation_id,
             case when b1.bloc_org_enr is null then 0 else 1 end bloc_org_enr,
             case when b2.bloc_org_id is null then 0 else 1 end bloc_org_id,
             case when e1.evt_org_enr is null then 0 else 1 end evt_org_enr,

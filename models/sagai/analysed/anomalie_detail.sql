@@ -21,10 +21,10 @@ v_export_anomalie as (
 v_ano_regle as (select anomalie_id,count(*) nb from v_regle_ano group by anomalie_id),
 
 final as (
-    select *, ees+regle_ano ano_inutilise
+    select *, ((ees_present+regle_ano)=0) ano_inutilise
     from (
         select a.anomalie_id,
-        case when e.ees_id is null then 0 else 1 end ees,
+        case when e.ees_id is null then 0 else 1 end ees_present,
         case when a.ees_id is null then 1 else 0 end ees_id_null,
         case when r.anomalie_id is null then 0 else 1 end regle_ano,
         case when ee.id_sagai is null and e.ees_id is not null then 1 else 0 end ees_non_repris,

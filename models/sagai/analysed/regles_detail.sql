@@ -62,6 +62,9 @@ v_export_regle as (
     select * from {{ ref('export_regle_de_routage') }}
 ),
 
+v_rejet_ees as (
+    select * from {{ ref('rejet_ees') }}
+),
 
 final as (
     select r.regle_id,
@@ -77,7 +80,9 @@ final as (
         max(case when a.anomalie_id is null then 1 else 0 end) ano_inex,
         max(case when o.organisation_id is null then 1 else 0 end) org_action_inex,
         max(case when o1.organisation_id is null then 1 else 0 end) org_copie_inex,
+        max(case when o2.organisation_id is null then 1 else 0 end) org_inex,        
         max(case when er.identifiant is null then 1 else 0 end) regle_non_reprise,
+        max(case when rj.ees_id is not null then 1 else 0 end) ees_rejete,
         rano+rees+rlei as rall
     from v_regle r
         left join v_regle_ano ra on r.regle_id =ra.regle_id
@@ -92,7 +97,9 @@ final as (
         left join v_anomalie  a on ra.anomalie_id =a.anomalie_id
         left join v_organisation o on rac.organisation_id = o.organisation_id
         left join v_organisation o1 on rc.organisation_id = o1.organisation_id
+        left join v_organisation o2 on r.organisation_id = o2.organisation_id        
         left join v_export_regle er on er.identifiant=r.regle_id
+        left join v_rejet_ees rj on rj.ees_id=e.ees_id
     group by r.regle_id
 )
 

@@ -1,0 +1,1 @@
+SELECT '{{ run_started_at }}' as LastRun

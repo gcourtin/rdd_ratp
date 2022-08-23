@@ -4,19 +4,19 @@ with v_net_anomalie as (
 
 final as (
     select
-        anomalie_id as identifiant,
-        anomalie_libl as Libelle,
+        a.anomalie_id as identifiant,
+        a.anomalie_libl as Libelle,
         null as description,
-        ees_id as Type_d_equipement,
+        a.ees_id as Type_d_equipement,
         true as actif,
-        anomalie_niv_urg as niveau_d_urgence,
-        anomalie_es_hs as etat_de_l_equipement,
-        anomalie_inacceptable as situation_inacceptable,
-        anomalie_nettete as critere_de_nettete,
-        case when anomalie_niv_urg = 9 then 1 else 0 end  as piece_jointe_obligatoire,
+        a.anomalie_niv_urg as niveau_d_urgence,
+        a.anomalie_es_hs as etat_de_l_equipement,
+        a.anomalie_inacceptable as situation_inacceptable,
+        a.anomalie_nettete as critere_de_nettete,
+        case when a.anomalie_niv_urg = 9 then 1 else 0 end  as piece_jointe_obligatoire,
         null as verifications_exploitant,
         null as sensible
-    from v_net_anomalie
+    from v_net_anomalie a
 )
 
 select * from final

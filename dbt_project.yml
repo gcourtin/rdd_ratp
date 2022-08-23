@@ -48,7 +48,10 @@ models:
         +schema: 07_export
       analysed:
         +materialized: table
-        +schema: 08_analysed                   
+        +schema: 08_analysed
+      rejet:
+        +materialized: table
+        +schema: 98_rejected                        
     mapping:
       +materialized: view
       +schema: 02_mapping

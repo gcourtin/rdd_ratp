@@ -48,6 +48,7 @@ sources:
     database: rdd
     schema: dev_07_export
     tables:
+      - name: export_last_run_date
       - name: export_anomalie
       - name: export_ees
       - name: export_equipement
