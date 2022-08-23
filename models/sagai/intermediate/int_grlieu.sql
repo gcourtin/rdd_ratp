@@ -11,7 +11,7 @@ final as (
         gr.grlieu_id
      from
 	     v_stg_grlieu gr
-         left join v_acc_lieux r on r.lieu_id = gr.elo_id
+         inner join v_acc_lieux r on r.lieu_id = gr.elo_id
 )
 
 select * from final

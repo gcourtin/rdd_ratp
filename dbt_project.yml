@@ -58,3 +58,11 @@ models:
     externe:
       +materialized: view
       +schema: 03_externe
+    merlin:
+      delta:
+        +materialized: view
+        +schema: 00_delta
+      full:
+        +materialized: view
+        +schema: 00_full
+    
