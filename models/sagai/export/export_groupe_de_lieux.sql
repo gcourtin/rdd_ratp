@@ -30,18 +30,18 @@ final as (
 		 group by parent)
 	union all
 	select 
-		 a.identifiant, 
+		 b.grlieu_id identifiant, 
 		 b.type_espace,
 		 a.parent,
 		 b.elo_id,
 		 true actif,
 		 '' as description
-	from
+	from v_int_grlieu_espace b 
+		 left join 
 		 (
 			select z.grlieu_id identifiant,listagg(distinct z.zonegeo_id,',') parent
 			from v_int_zonegeo z group by z.grlieu_id
-		 ) a
-		 inner join v_int_grlieu_espace b on a.identifiant=b.grlieu_id
+		 ) a  on a.identifiant=b.grlieu_id
 )
 
 select * from final

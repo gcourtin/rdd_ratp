@@ -24,7 +24,8 @@ final as (
          from v_regle r
          inner join v_organisation o on o.organisation_id=r.organisation_id
          where r.regle_id in (
-                             select distinct re.regle_id from v_regle_ees re
+                             select distinct re.regle_id 
+                             from v_regle_ees re
                              inner join v_ees e on re.ees_id=e.ees_id and re.regle_id=r.regle_id
                              inner join v_regle_lieu rl on rl.regle_id=r.regle_id
                              )

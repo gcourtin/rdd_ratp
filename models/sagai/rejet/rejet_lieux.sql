@@ -7,7 +7,7 @@ export_lieux as (
 ),
 
 final as (
-    select a.elo_id
+    select a.elo_id,
      case 
         when a.type_elo like 'TERRAIN%' then 'Rejet Lieu '||a.type_elo
         when a.elo_id like '199%' or a.elo_id like '7%' then 'Rejet Lieu BUS'

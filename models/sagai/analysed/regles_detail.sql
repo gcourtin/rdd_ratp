@@ -83,6 +83,7 @@ final as (
         max(case when o2.organisation_id is null then 1 else 0 end) org_inex,        
         max(case when er.identifiant is null then 1 else 0 end) regle_non_reprise,
         max(case when rj.ees_id is not null then 1 else 0 end) ees_rejete,
+        max(case when r.regle_dat_fin < current_timestamp() and r.regle_dat_fin is not null then 1 else 0 end) dat_fin,
         rano+rees+rlei as rall
     from v_regle r
         left join v_regle_ano ra on r.regle_id =ra.regle_id

@@ -45,6 +45,7 @@ final as (
                 ,',') espace
             from v_grlieu gr
             inner join v_detail_grlieu dg on dg.grlieu_id = gr.grlieu_id
+            inner join v_net_lieux nl on nl.elo_id=gr.elo_id
             group by gr.grlieu_id,dg.collection_id
             )
 )

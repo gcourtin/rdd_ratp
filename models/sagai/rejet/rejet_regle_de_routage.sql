@@ -11,6 +11,7 @@ final as (
         when ees_rejete = 1 then 'Règle associé à un ees rejeté'
         when lieu_inex = 1 then 'Règle associé à des lieux inexistant'
         when org_inex = 1 then 'Règle pour organisation inconue'
+        when dat_fin = 1 then 'Règle dont la date de fin est dépassée'
         else 'Raison inconnue'
     end as motif
     from regles_detail rd

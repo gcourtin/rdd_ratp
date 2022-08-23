@@ -25,7 +25,7 @@ final as (
 	        when rpt_abs = 1 then 'Equipement rattaché à un lieu inconnu'
             when re.ees_id is not null then 'Equipement rattaché à un '||re.motif   
             when ees_xpeage = 1 then 'Equipement lié au réseau XPEAGE'                  
-            else 'Raison Inconnu'
+            else 'Raison Inconnue'
         end as motif
     from v_mots_clefs_detail md
     inner join v_mots_clefs m on m.mot_clef=md.mot_clef
