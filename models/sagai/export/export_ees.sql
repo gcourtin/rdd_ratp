@@ -12,8 +12,8 @@ v_ees_generic as (
 
 v_grlieu_merlin as (
             select distinct * from (
-                select identifiant as grlieu_id,z.value as elo_id from (
-                    select * from {{ ref('export_groupe_de_lieux') }} where elo_id is not null and elo_id <> ''), table(split_to_table(elo_id,',')
+                select grlieu_id,z.value as elo_id from (
+                    select * from {{ ref('int_grlieu_preparation_ees') }} where elo_id is not null and elo_id <> ''), table(split_to_table(elo_id,',')
                 ) z) order by grlieu_id,elo_id
 ),
 
