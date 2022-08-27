@@ -35,30 +35,43 @@ models:
     sagai:
       # Applies to all files under models/example/
       staging:
+        +tags: "core"
         +materialized: view
         +schema: 01_stagging
       cleaned:
+        +tags: "core"      
         +materialized: table
         +schema: 05_cleaned      
       intermediate:
+        +tags: "core"      
         +materialized: table
         +schema: 06_intermediate      
       export:
+        +tags: "core"      
         +materialized: table
         +schema: 07_export
       analysed:
+        +tags: "postcore"      
         +materialized: table
         +schema: 08_analysed
       rejet:
+        +tags: "postcore"          
         +materialized: table
         +schema: 98_rejected                        
     mapping:
+      +tags: "core"      
       +materialized: view
       +schema: 02_mapping
     externe:
+      +tags: "core"       
       +materialized: view
       +schema: 03_externe
+    middleware:
+      +tags: "mdw"       
+      +materialized: view
+      +schema: 99_mdw_export      
     merlin:
+      +tags: "merlin"       
       delta:
         +materialized: view
         +schema: 00_delta

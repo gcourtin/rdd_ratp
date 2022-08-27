@@ -7,8 +7,8 @@ v_net_lieux as (
 
 final as (
      Select 
-        listagg(distinct gr.elo_id,',') elo_id,
-        gr.grlieu_id
+        gr.grlieu_id,
+        listagg(distinct gr.elo_id,',') elo_id
      from
 	     v_stg_grlieu gr
          inner join v_net_lieux r on r.elo_id = gr.elo_id

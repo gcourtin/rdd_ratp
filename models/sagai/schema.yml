@@ -59,3 +59,18 @@ sources:
       - name: export_organisation_groupe_de_lieux
       - name: export_regle_de_routage
       - name: export_role_fonction
+  - name: mdw_export
+    description: "schema des données à exporter dans Merlin créer par le middleware"
+    database: rdd
+    schema: public
+    tables:
+      - name: export_anomalie
+      - name: export_ees
+      - name: export_equipement
+      - name: export_groupe_de_lieux
+      - name: export_lieux
+      - name: export_organisation
+      - name: export_organisation_fonction
+      - name: export_organisation_groupe_de_lieux
+      - name: export_regle_de_routage
+      - name: export_role_fonction      

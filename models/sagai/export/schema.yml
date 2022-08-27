@@ -28,6 +28,9 @@ models:
 
       - name: actif
         description: ""
+        tests:
+          - accepted_values:
+              values: [true,false]        
 
       - name: niveau_d_urgence
         description: ""
@@ -69,6 +72,10 @@ models:
 
       - name: sous_type
         description: ""
+        tests:
+          - not_null          
+          - accepted_values:
+              values: ['Non générique, Générique par lieu','Générique par lieu','Non générique']
 
       - name: url_unc
         description: ""
@@ -78,6 +85,9 @@ models:
 
       - name: actif
         description: ""
+        tests:
+          - accepted_values:
+              values: [true,false]
 
       - name: commentaire
         description: ""
@@ -97,8 +107,8 @@ models:
         description: ""
         tests:
           - agg_relationships:
-              to: ref('export_lieux')
-              field: eloid        
+              to: ref('acc_lieux')
+              field: lieu_id        
 
   - name: export_groupe_de_lieux
     description: ""
@@ -112,10 +122,16 @@ models:
       - name: type_espace
         description: ""
         tests:
-          - not_null         
+          - not_null
+          - accepted_values:
+              values: ['Multimode','Espaces RER','Espaces FERRE','Espaces METRO','Espaces TRAM','Bâtiments']
 
       - name: parent
         description: ""
+        tests:
+          - agg_relationships:
+              to: ref('export_groupe_de_lieux')
+              field: identifiant           
 
       - name: elo_id
         description: ""
@@ -127,6 +143,9 @@ models:
 
       - name: actif
         description: ""
+        tests:
+          - accepted_values:
+              values: [true,false]
 
       - name: description
         description: ""  
@@ -148,6 +167,10 @@ models:
 
       - name: code_ug_pere
         description: ""
+        tests:
+          - relationships:
+              to: ref('export_lieux')
+              field: code_ug        
 
       - name: reseau_code
         description: ""
@@ -281,6 +304,9 @@ models:
 
       - name: actif
         description: ""
+        tests:
+          - accepted_values:
+              values: [true,false]        
 
       - name: mode_de_propagation_par_defaut
         description: ""
@@ -329,6 +355,9 @@ models:
 
       - name: actif
         description: ""
+        tests:
+          - accepted_values:
+              values: [true,false]        
 
       - name: date_debut
         description: ""
@@ -366,6 +395,10 @@ models:
 
       - name: equipement
         description: ""            
+        tests:
+          - agg_relationships:
+              to: ref('export_equipement')
+              field: identifiant    
 
       - name: anomalie
         description: ""
@@ -425,6 +458,9 @@ models:
 
       - name: actif
         description: ""
+        tests:
+          - accepted_values:
+              values: [true,false]        
 
       - name: equipement_asservi
         description: ""
@@ -472,6 +508,12 @@ models:
 
       - name: regle
         description: ""
+        tests:
+          - relationships:
+              to: ref('export_regle_de_routage')
+              field: identifiant
+              config:
+                where: " length(regle) > 1 "        
 
       - name: code_mire
         description: ""
