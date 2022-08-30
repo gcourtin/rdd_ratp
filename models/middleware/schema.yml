@@ -23,7 +23,7 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('export_ees')
+              to: ref('mdw_export_ees')
               field: id_sagai 
 
       - name: actif
@@ -88,7 +88,7 @@ models:
         tests:
           - not_null
           - agg_relationships:
-              to: ref('export_role_fonction')
+              to: ref('mdw_export_role_fonction')
               field: nom
 
       - name: station
@@ -98,7 +98,7 @@ models:
         description: ""
         tests:
           - agg_relationships:
-              to: ref('export_lieux')
+              to: ref('mdw_export_lieux')
               field: eloid        
 
   - name: mdw_export_groupe_de_lieux
@@ -123,7 +123,7 @@ models:
         tests:
           - not_null
           - agg_relationships:
-              to: ref('export_lieux')
+              to: ref('mdw_export_lieux')
               field: eloid            
 
       - name: actif
@@ -230,7 +230,7 @@ models:
         tests:
           - not_null
           - agg_relationships:
-              to: ref('export_role_fonction')
+              to: ref('mdw_export_role_fonction')
               field: nom    
   
   - name: mdw_export_organisation_groupe_de_lieux
@@ -247,7 +247,7 @@ models:
         tests:
           - not_null
           - agg_relationships:
-              to: ref('export_groupe_de_lieux')
+              to: ref('mdw_export_groupe_de_lieux')
               field: identifiant    
 
   - name: mdw_export_organisation
@@ -268,7 +268,7 @@ models:
         description: ""
         tests:
           - relationships:
-              to: ref('export_organisation')
+              to: ref('mdw_export_organisation')
               field: identifiant
 
       - name: societe_mere
@@ -356,7 +356,7 @@ models:
         tests:
           - not_null
           - agg_relationships:
-              to: ref('export_lieux')
+              to: ref('mdw_export_lieux')
               field: eloid         
 
       - name: ees
@@ -364,7 +364,7 @@ models:
         tests:
           - not_null
           - agg_relationships:
-              to: ref('export_ees')
+              to: ref('mdw_export_ees')
               field: id_sagai          
 
       - name: equipement
@@ -374,7 +374,7 @@ models:
         description: ""
         tests:
           - agg_relationships:
-              to: ref('export_anomalie')
+              to: ref('mdw_export_anomalie')
               field: identifiant           
 
       - name: intervenant_principal
@@ -382,21 +382,21 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('export_organisation')
+              to: ref('mdw_export_organisation')
               field: identifiant   
 
       - name: intervenant_pour_action
         description: ""
         tests:
           - agg_relationships:
-              to: ref('export_organisation')
+              to: ref('mdw_export_organisation')
               field: identifiant   
 
       - name: intervenant_en_copie
         description: ""
         tests:
           - agg_relationships:
-              to: ref('export_organisation')
+              to: ref('mdw_export_organisation')
               field: identifiant 
 
   - name: mdw_export_role_fonction
