@@ -24,7 +24,11 @@ final as (
 	        when org_abs = 1 then 'Equipement rattaché à une organisation inconnue'
 	        when rpt_abs = 1 then 'Equipement rattaché à un lieu inconnu'
             when re.ees_id is not null then 'Equipement rattaché à un '||re.motif   
-            when ees_xpeage = 1 then 'Equipement lié au réseau XPEAGE'                  
+            when ees_xpeage = 1 then 'Equipement lié au réseau XPEAGE'  
+            when gmao_m2e=1 and agora_abs=1 then 'Mot clef lié à m2e non présent dans agora'
+            when regle_abs = 1 then 'Règle forcée inconnu' 
+            when si_immo_abs = 1 then 'Equipement rattaché à un lieu inconnu de SI IMMO' 
+            when org_non_reprise = 1 then 'Equiepement rattaché à une organisation non reprise'
             else 'Raison Inconnue'
         end as motif
     from v_mots_clefs_detail md
